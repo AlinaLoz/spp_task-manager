@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const conf = require('./config/db');
 const UserModel = require('./models/user');
+const TaskModel = require('./models/task');
 
 const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
 	host: conf.host,
@@ -11,13 +12,18 @@ const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
 });
 
 const User = UserModel(sequelize, Sequelize);
+const Task = TaskModel(sequelize, Sequelize);
 
-sequelize.sync()
+User.hasMany(Task);
+Task.belongsTo(User);
+
+sequelize.sync({force: true})
 	.then(() => {
 		console.log(`Database & tables created!`)
 	});
 
 module.exports = {
-	User
+	User,
+	Task
 };
 
