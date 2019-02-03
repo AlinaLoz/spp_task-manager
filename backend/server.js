@@ -6,46 +6,57 @@ const {saltHashPassword, sha512} = require('./hash/saltHashPassword');
 
 const {User, Task} = require('./sequelize');
 
+app.use(function (req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+	next();
+});
+
 app.use('/api/v1.0/register', bodyParser.json());
 app.use('/api/v1.0/update-password', bodyParser.json());
 app.use('/api/v1.0/task-add', bodyParser.json());
 app.use('/api/v1.0/task-delete', bodyParser.json());
 
+
 app.get('/api/v1.0/login', (req, resp) => {
 	const {login, password} = req.query;
+	console.log(login);
 	User.findOne({where: {login}}).then(user => {
 		if (user) {
 			const userData = sha512(password, user.dataValues.salt);
 			if (user.dataValues.hash !== userData.hash) {
-				resp.send({status: "error", message: "password is wrong"});
+				resp.status(401);
+				resp.send({message: "incorrect password"});
 			} else {
-				resp.send({status: "ok", id: user.dataValues.id});
+				resp.status(200);
+				resp.send({id: user.dataValues.id});
 			}
 		} else {
-			resp.send({status: "error", message: "login is wrong"});
+			resp.status(401);
+			resp.send({message: "login isn't exist"});
 		}
 	});
 });
 
 app.post('/api/v1.0/register', (req, resp) => {
 	const {login, password, confirmPassword} = req.body;
+
 	User.findOne({where: {login}}).then(user => {
 		if (user) {
-			resp.send({status: "error", message: "user exist"});
+			resp.send({data: {status: "error", message: "user exist"}});
 		} else {
 			if (password !== confirmPassword) {
-				resp.send({status: "error", message: "password and confirm password are not equal"});
+				resp.send({data: {status: "error", message: "password and confirm password are not equal"}});
 				return;
 			}
 			const userData = saltHashPassword(password);
 
 			User.create({login, ...userData})
-				.then(data => { resp.send({status: "ok"}); })
-				.catch(err => { resp.send({status: "error", message: "user exist"}); });
+				.then(data => { resp.send({data: {status: "ok"}}); })
+				.catch(err => { resp.send({data: {status: "error", message: "user exist"}}); });
 		}
 	});
 });
-
 
 app.put('/api/v1.0/update-password', (req, resp) => {
 	const {id, newPassword, confirmNewPassword} = req.body;

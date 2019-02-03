@@ -1,7 +1,14 @@
 export const ACTIONS = {
 	USER: {
-		LOGIN_RQ: "LOGIN_RQ",
-		LOGIN_SC: "LOGIN_SC",
-		LOGIN_FL: "LOGIN_FL",
+		LOGIN: {
+			RQ: "LOGIN_RQ",
+			SC: "LOGIN_SC",
+			FL: "LOGIN_FL"
+		},
+		REGISTER: {
+			RQ: "REGISTER_RQ",
+			SC: "REGISTER_SC",
+			FL: "REGISTER_FL"
+		}
 	}
 };

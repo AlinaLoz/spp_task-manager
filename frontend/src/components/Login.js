@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchLogin} from "../redux/actions";
-import {Button, Input} from "semantic-ui-react";
-
-
+import {Button, Input, Grid, Message} from "semantic-ui-react";
+import {fetchLogin} from "../redux/login/actions";
 
 class Login extends Component {
 	state = {
@@ -26,19 +24,28 @@ class Login extends Component {
 
 	render() {
 		const {login, password} = this.state;
+		const {message} = this.props;
 
 		return (
-			<form>
-				<Input type="text" onChange={this.onChange.bind(this, "login")}/>
-				<Input type="password" onChange={this.onChange.bind(this, "password")}/>
-				<Button disabled={!login || !password} onClick={this.logIn}>login</Button>
-			</form>
+			<Grid className={'page-form login'}>
+				<Button className="button__register" onClick={() => this.props.history.push('/register')}>register</Button>
+				<div>
+					<Message hidden={!Object.keys(message).length || !message.negative} content={message.text}/>
+					<form>
+						<Input type="text" onChange={this.onChange.bind(this, "login")}/>
+						<Input type="password" onChange={this.onChange.bind(this, "password")}/>
+						<Button className="button__login" disabled={!login || !password} onClick={this.logIn}>login</Button>
+					</form>
+				</div>
+			</Grid>
 		)
 	}
 }
 
 export default connect(
-	state => ({}),
+	state => ({
+		message: state.login.message || {}
+	}),
 	dispatch => ({
 		onfetchLogin: (login, password) => dispatch(fetchLogin(login, password))
 	})

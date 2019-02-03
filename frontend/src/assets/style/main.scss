@@ -1,0 +1,60 @@
+html, body {
+  margin: 0;
+}
+
+.page-form {
+  height: 100vh;
+  position: relative;
+  top     : 0;
+  left    : 0;
+  width   : 100%;
+  background: url('../images/login_bg.png');
+
+  & > div {
+    width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  form {
+    background: #f3f4f5;
+    color: rgba(0,0,0,.6);
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    margin: 1rem 0;
+    padding: 1em;
+    border-radius: .28571429rem;
+    border: 1px solid rgba(34,36,38,.15);
+
+    .input {
+      height: 35px !important;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .message {
+    background: #f95939;
+  }
+
+  .button {
+    &__register {
+      position: absolute;
+      right: 5px;
+      top: 25px;
+    }
+
+
+    &__login {
+      background: #00b5ad;
+      width: 100%;
+    }
+
+    &__back {
+      position: absolute;
+      left: 25px;
+      top: 25px;
+    }
+  }
+}
