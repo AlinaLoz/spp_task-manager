@@ -22,6 +22,8 @@ sequelize.sync({force: true})
 		console.log(`Database & tables created!`)
 	});
 
+
+
 module.exports = {
 	User,
 	Task
