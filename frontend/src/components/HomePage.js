@@ -10,6 +10,7 @@ export const HomePage = () => (
 		<Switch>
 			{!localStorage.getItem('auth') && <Route component={Login}/>}
 			<Route exact path={'/'} component={Tasks}/>
+			<Route component={Tasks}/>
 		</Switch>
 	</React.Fragment>
 );

@@ -1,5 +1,7 @@
 html, body {
+  min-width: 1000px;
   margin: 0;
+  font-family: Lato, 'sans-serif';
 }
 
 .page-form {
@@ -56,5 +58,129 @@ html, body {
       left: 25px;
       top: 25px;
     }
+  }
+}
+
+.page-tasks {
+  display: flex;
+
+  .segment {
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 0;
+    font-weight: 700;
+
+    .item {
+      i.icon.tasks:before {
+        position: relative;
+        left: -10px;
+      }
+    }
+  }
+
+  &__sidebar.sidebar {
+    padding-right: 0;
+    width: 210px !important;
+    height: 100vh  !important;
+    position: relative !important;
+    background: #1b1c1d;
+
+    .item {
+      display: inline-block;
+      background: 0 0;
+      width: 100%;
+      font-weight: 700;
+      padding: 0.5em 1.33333333em;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.content {
+  padding: 14px 14px;
+  position: relative;
+
+  //.message {
+  //  padding: 0;
+  //}
+
+  textarea {
+    width: 92%;
+  }
+
+  i.icon.save:before {
+    position: absolute;
+    right: 17px;
+    top: 6px;
+  }
+
+  .header {
+    font-size: 1.71428571rem !important;
+    padding-top: 10px;
+  }
+
+  .button-add {
+    margin-bottom: 10px;
+  }
+
+  .accordion {
+    width: 400px !important;
+
+    i {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    i.icon.close:before {
+      position: absolute;
+      right: 28px;
+    }
+
+    i.icon.edit:before {
+      position: absolute;
+      right: 50px;
+    }
+  }
+}
+
+.task-add {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: #f2f2f2;
+  padding: 10px 7px;
+  border-radius: 5px;
+
+  textarea {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  label {
+    height: 20px;
+  }
+
+  .input {
+    margin-bottom: 14px;
+  }
+
+  input {
+    height: 25px;
+    padding: 0 !important;
+    position: relative;
+    top: 2px;
   }
 }

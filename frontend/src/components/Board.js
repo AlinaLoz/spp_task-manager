@@ -1,17 +1,22 @@
-import React, {Component} from 'react';
-import {Grid, Segment, Sidebar} from "semantic-ui-react";
-import Header from "semantic-ui-react/dist/commonjs/elements/Header";
-import {Link} from "react-router-dom";
+import React from 'react';
+import {Icon, Segment, Sidebar, Menu} from "semantic-ui-react";
+import {withRouter} from "react-router-dom";
 
-export const Board = ({children}) => {
+const BoardComponent = ({children, history}) => {
 	return (
-		<Grid className={'page-form login'}>
-			<Sidebar>
+		<section className={'page-tasks'}>
+			<Sidebar visible className={'page-tasks__sidebar'}>
 				<Segment basic>
-					<Header as='h3'><Link to={'/tasks'}>Tasks</Link></Header>
+					<Menu.Item as='a' onClick={() => history.push('/tasks')}>
+						<Icon name='tasks'/>
+						<span>Tasks</span>
+					</Menu.Item>
 				</Segment>
 			</Sidebar>
 			{children}
-		</Grid>
+		</section>
 	)
 };
+
+
+export const Board = withRouter(BoardComponent);

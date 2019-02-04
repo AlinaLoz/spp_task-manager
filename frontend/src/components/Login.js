@@ -15,12 +15,22 @@ class Login extends Component {
 		});
 	};
 
+
 	logIn = (e) => {
 		e.preventDefault();
 		const {login, password} = this.state;
 		const {onfetchLogin} = this.props;
 		onfetchLogin(login, password);
 	};
+
+	componentWillReceiveProps(nextProps) {
+		const {message} = nextProps;
+		console.log(message);
+		if (this.props.message !== message && !message.negative) {
+
+			this.props.history.push('/');
+		}
+	}
 
 	render() {
 		const {login, password} = this.state;

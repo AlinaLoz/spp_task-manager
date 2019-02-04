@@ -9,8 +9,8 @@ export default function login(state = initState, action) {
 		case ACTIONS.USER.LOGIN.RQ:
 			return {...state};
 		case ACTIONS.USER.LOGIN.SC:
-			localStorage.setItem('auth', '1');
-			return {...state, ...action.data, message : {negative: false}};
+			localStorage.setItem('auth', action.data.id);
+			return {...state, message : {negative: false}};
 		case ACTIONS.USER.LOGIN.FL:
 			const {data} = action;
 			return {...state, message : {negative: true, text: data}};

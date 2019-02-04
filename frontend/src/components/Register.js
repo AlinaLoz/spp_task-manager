@@ -23,6 +23,14 @@ class Register extends Component {
 		onfetchRegister(login, password, confirmPassword);
 	};
 
+	componentWillReceiveProps(nextProps) {
+		const {message} = nextProps;
+		if (this.props.message !== message && !message.negative) {
+
+			this.props.history.push('/login');
+		}
+	}
+
 	render() {
 		const {login, password} = this.state;
 		const {message} = this.props;

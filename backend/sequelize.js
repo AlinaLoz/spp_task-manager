@@ -17,7 +17,7 @@ const Task = TaskModel(sequelize, Sequelize);
 User.hasMany(Task);
 Task.belongsTo(User);
 
-sequelize.sync({force: true})
+sequelize.sync()
 	.then(() => {
 		console.log(`Database & tables created!`)
 	});
