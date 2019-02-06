@@ -1,0 +1,36 @@
+version: '3.4'
+services:   
+  server:
+    build:  
+      ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+     - DATABASE_HOST=db
+    volumes:
+      - ./backend:/src/app/server
+    networks:
+     - local
+    command: npm start
+    links:
+      - "db:db"
+  client:
+    build:
+      ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/src/app/client/src
+      - ./frontend/public:/src/app/client/public
+    command: npm run start
+    networks:
+      - local
+  db:
+    build: ./db
+    ports:
+      - "3306:3306"
+
+networks:
+  local:
