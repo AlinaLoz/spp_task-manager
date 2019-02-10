@@ -4,18 +4,22 @@ services:
     build:  
       ./backend
     ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-     - DATABASE_HOST=db
+      - "8000:8000"
     volumes:
       - ./backend:/src/app/server
-    networks:
-     - local
+    depends_on:
+      - db
     command: npm start
-    links:
-      - "db:db"
+  db:
+    image: mysql:5.5
+    environment:
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_ROOT_PASSWORD: 651003
+      MYSQL_DATABASE: task_manager
+      MYSQL_USER: lozita
+      MYSQL_PASSWORD: 651003
+    ports:
+     - "3307:3306"
   client:
     build:
       ./frontend
@@ -25,12 +29,3 @@ services:
       - ./frontend/src:/src/app/client/src
       - ./frontend/public:/src/app/client/public
     command: npm run start
-    networks:
-      - local
-  db:
-    build: ./db
-    ports:
-      - "3306:3306"
-
-networks:
-  local:
