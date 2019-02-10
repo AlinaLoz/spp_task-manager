@@ -3,9 +3,10 @@ const conf = require('./config/db');
 const UserModel = require('./models/user');
 const TaskModel = require('./models/task');
 
-const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
-	host: conf.host,
-	dialect: conf.dialect,
+const sequelize = new Sequelize("task_manager", "lozita", "651003", {
+	host: "db",
+	dialect: "mysql",
+ 	port: "3306",
 	pool: {
 		max: conf.pool.max
 	}
