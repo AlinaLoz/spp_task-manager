@@ -2,7 +2,7 @@ class Xhr {
 	defaultData = {
 		optionsGet  : {
 			mode   : 'cors',
-			method : 'get'
+			method : 'get',
 		},
 		optionsPost : {
 			mode     : 'cors',
@@ -30,6 +30,7 @@ class Xhr {
 
 	get(url, params) {
 		const sendData = Object.keys(params).map(key => `${key}=${params[key]}`);
+		this.defaultData.optionsGet['x-access-token'] = localStorage.getItem('token');
 
 		return fetch(`${url}?${sendData.join('&')}`, this.defaultData.optionsGet)
 			.then(response => {
@@ -41,6 +42,8 @@ class Xhr {
 	}
 
 	post(url, body) {
+		this.defaultData.optionsPost['x-access-token'] = localStorage.getItem('token');
+
 		return fetch(url, {...this.defaultData.optionsPost, body: JSON.stringify(body)})
 			.then(response => {
 				if (response.status >= 200 && response.status < 300) {
@@ -51,6 +54,8 @@ class Xhr {
 	}
 
 	delete(url, body) {
+		this.defaultData.optionsDelete['x-access-token'] = localStorage.getItem('token');
+
 		return fetch(url, {...this.defaultData.optionsDelete, body: JSON.stringify(body)})
 			.then(response => {
 				if (response.status >= 200 && response.status < 300) {
@@ -61,6 +66,8 @@ class Xhr {
 	}
 
 	put(url, body) {
+		this.defaultData.optionsPut['x-access-token'] = localStorage.getItem('token');
+
 		return fetch(url, {...this.defaultData.optionsPut, body: JSON.stringify(body)})
 			.then(response => {
 				if (response.status >= 200 && response.status < 300) {

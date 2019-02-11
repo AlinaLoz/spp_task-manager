@@ -4,7 +4,7 @@ const UserModel = require('./models/user');
 const TaskModel = require('./models/task');
 
 const sequelize = new Sequelize("task_manager", "lozita", "651003", {
-	host: "db",
+	host: "127.0.0.1",
 	dialect: "mysql",
  	port: "3306",
 	pool: {
@@ -22,7 +22,6 @@ sequelize.sync()
 	.then(() => {
 		console.log(`Database & tables created!`)
 	});
-
 
 
 module.exports = {

@@ -68,35 +68,41 @@ app.post('/api/v1.0/register', (req, resp) => {
 	});
 });
 
-app.put('/api/v1.0/update-password', (req, resp) => {
-	const {id, newPassword, confirmNewPassword} = req.body;
-
-	User.findById(parseInt(id)).then(user => {
-		if (!user) {
-			resp.send({status: "error", message: "is is not correct"});
-		} else {
-			if (newPassword !== confirmNewPassword) {
-				resp.send({status: "error", message: "password and confirm password are not equal"});
-				return;
-			}
-			const userData = saltHashPassword(newPassword);
-			user.update({...userData})
-				.then(_ => { resp.send({status: "ok"}); });
-		}
-	});
-});
+// app.put('/api/v1.0/update-password', (req, resp) => {
+// 	const {id, newPassword, confirmNewPassword} = req.body;
+//
+// 	User.findById(parseInt(id)).then(user => {
+// 		if (!user) {
+// 			resp.send({status: "error", message: "is is not correct"});
+// 		} else {
+// 			if (newPassword !== confirmNewPassword) {
+// 				resp.send({status: "error", message: "password and confirm password are not equal"});
+// 				return;
+// 			}
+// 			const userData = saltHashPassword(newPassword);
+// 			user.update({...userData})
+// 				.then(_ => { resp.send({status: "ok"}); });
+// 		}
+// 	});
+// });
 
 app.get('/api/v1.0/tasks', (req, resp) => {
-	const {id} = req.query;
-	User.findById(parseInt(id)).then(user => {
-		if (!user) {
-			resp.send({status: "error", message: "user is not exist"});
-		} else {
+	var token = req.headers['x-access-token'];
+
+	if (!token) return resp.status(401).send({ auth: false, message: 'No token provided.' });
+
+	jwt.verify(token, conf.secret, function(err, decoded) {
+		if (err) return resp.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+
+		User.findById(parseInt(decoded.id)).then(user => {
+			if (err) return resp.status(500).send("There was a problem finding the user.");
 			const tasks = user.getTasks().then(tasks => {
 				resp.send({status: "ok", tasks});
 			});
-		}
+		}).catch(err => resp.status(401).end());
 	});
+
+
 });
 
 app.post('/api/v1.0/task-add', (req, resp) => {
@@ -111,24 +117,6 @@ app.post('/api/v1.0/task-add', (req, resp) => {
 					user.addTask(task)
 						.then(_ => { resp.send({status: "ok"}); })
 						.catch(error => {resp.send({status: "error", error})});
-				})
-				.catch(error => { resp.send({status: "error", error}); });
-		}
-	});
-});
-
-app.post('/api/v1.0/task-delete', (req, resp) => {
-	const {text, id} = req.body;
-
-	User.findById(parseInt(id)).then(user => {
-		if (!user) {
-			resp.send({status: "error", message: "user is not exist"});
-		} else {
-			Task.create({text})
-				.then(task => {
-					user.addTask(task)
-						.then(_ => { resp.send({status: "ok"}); })
-						.catch(error => {resp.send({code: 500, error})});
 				})
 				.catch(error => { resp.send({status: "error", error}); });
 		}
