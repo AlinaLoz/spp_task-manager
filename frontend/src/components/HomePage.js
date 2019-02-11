@@ -3,18 +3,25 @@ import {Route, Switch} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Tasks from "./Tasks";
+import {connect} from "react-redux";
 
-export const HomePage = () => (
-	<React.Fragment>
-		<Route path='/register' component={Register}/>
-		<Switch>
-			{!localStorage.getItem('auth') && <Route component={Login}/>}
-			<Route exact path={'/'} component={Tasks}/>
-			<Route component={Tasks}/>
-		</Switch>
-	</React.Fragment>
-);
+const HomePage = ({auth}) =>  {
+	return (
+		<React.Fragment>
+			<Route path='/register' component={Register}/>
+			<Switch>
+				{!auth && <Route component={Login}/>}
+				<Route exact path={'/'} component={Tasks}/>
+			</Switch>
+		</React.Fragment>
+	)
+};
 
-
+export default connect(
+	state => ({
+		auth: state.auth.auth
+	}),
+	dispatch => ({})
+)(HomePage);
 
 

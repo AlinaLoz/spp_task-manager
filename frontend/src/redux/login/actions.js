@@ -7,7 +7,7 @@ export const fetchLogin = (login, password) => dispatch => {
 	Xhr.login(login, password).then(resp => {
 		dispatch({
 			type: ACTIONS.USER.LOGIN.SC,
-			data: resp.data
+			data: resp
 		})
 	}).catch(err => {
 		dispatch({

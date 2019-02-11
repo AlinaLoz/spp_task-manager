@@ -33,6 +33,16 @@ html, body {
       height: 35px !important;
       width: 100%;
       margin-bottom: 10px;
+
+      i {
+        position: absolute;
+        margin-left: 9px;
+        margin-top: 7px;
+      }
+
+      input {
+        text-indent: 20px;
+      }
     }
   }
 

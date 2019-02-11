@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Button, Input, Grid, Message} from "semantic-ui-react";
+import {Button, Input, Grid, Message, Icon} from "semantic-ui-react";
 import {fetchLogin} from "../redux/login/actions";
 
 class Login extends Component {
@@ -42,8 +42,14 @@ class Login extends Component {
 				<div>
 					<Message hidden={!Object.keys(message).length || !message.negative} content={message.text}/>
 					<form>
-						<Input type="text" onChange={this.onChange.bind(this, "login")}/>
-						<Input type="password" onChange={this.onChange.bind(this, "password")}/>
+						<Input type="text" onChange={this.onChange.bind(this, "login")}>
+							<Icon name="user"/>
+							<input type="text"/>
+						</Input>
+						<Input type="password" onChange={this.onChange.bind(this, "password")}>
+							<Icon name="lock"/>
+							<input type="password"/>
+						</Input>
 						<Button className="button__login" disabled={!login || !password} onClick={this.logIn}>login</Button>
 					</form>
 				</div>
@@ -54,7 +60,7 @@ class Login extends Component {
 
 export default connect(
 	state => ({
-		message: state.login.message || {}
+		message: state.auth.message || {}
 	}),
 	dispatch => ({
 		onfetchLogin: (login, password) => dispatch(fetchLogin(login, password))

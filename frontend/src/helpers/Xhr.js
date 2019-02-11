@@ -1,16 +1,16 @@
 class Xhr {
-    defaultData = {
-        optionsGet  : {
-            mode   : 'cors',
-            method : 'get'
-        },
-        optionsPost : {
-            mode     : 'cors',
-            method   : 'post',
-            headers  : {
-                "Content-type" : "application/json; charset=UTF-8",
-            },
-        },
+	defaultData = {
+		optionsGet  : {
+			mode   : 'cors',
+			method : 'get'
+		},
+		optionsPost : {
+			mode     : 'cors',
+			method   : 'post',
+			headers  : {
+				"Content-type" : "application/json; charset=UTF-8",
+			},
+		},
 		optionsDelete  : {
 			mode   : 'cors',
 			method : 'delete',
@@ -25,7 +25,7 @@ class Xhr {
 				"Content-type" : "application/json; charset=UTF-8",
 			},
 		}
-    };
+	};
 
 
 	get(url, params) {

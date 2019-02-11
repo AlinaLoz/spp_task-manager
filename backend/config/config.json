@@ -1,5 +1,6 @@
 {
 	"port": "8000",
 	"host": "localhost",
-	"dialect": "mysql"
+	"dialect": "mysql",
+	"secret": "password"
 }

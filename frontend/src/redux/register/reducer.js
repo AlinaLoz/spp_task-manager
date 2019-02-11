@@ -1,7 +1,7 @@
 import {ACTIONS} from "../constans";
 
 const initState = {
-	message: {}
+	message: {},
 };
 
 export default function register(state = initState, action) {
@@ -9,11 +9,9 @@ export default function register(state = initState, action) {
 		case ACTIONS.USER.REGISTER.RQ:
 			return {...state};
 		case ACTIONS.USER.REGISTER.SC:
-			console.log('success');
-			return {...state, ...action.data, message : {negative: false}};
+			return {...state, message : {negative: false}};
 		case ACTIONS.USER.REGISTER.FL:
 			const {data} = action;
-			console.log('failure');
 			return {...state, message : {negative: true, text: data}};
 		default:
 			return state;

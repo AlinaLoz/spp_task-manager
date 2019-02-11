@@ -1,10 +1,10 @@
-import login from "./login/reducer";
+import auth from "./login/reducer";
 import register from "./register/reducer";
-import tasks from "./tasks/reducer";
 import {combineReducers} from "redux";
+import tasks from "./tasks/reducer";
 
 export default combineReducers({
-	login,
+	auth,
 	register,
 	tasks,
 });
