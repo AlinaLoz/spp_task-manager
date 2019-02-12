@@ -7,5 +7,6 @@ module.exports = (sequelize, type) => {
 		},
 		login: type.STRING,
 		password: type.STRING,
+		name: type.STRING
 	});
 };
