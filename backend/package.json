@@ -18,9 +18,13 @@
     "sequelize": "^4.42.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "crypto": "^1.0.1",
-    "sequelize": "^4.42.0",
-    "mysql": "^2.5.2"
+    "express-bearer-token": "^2.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "mysql": "^2.5.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.0"
   }
 }

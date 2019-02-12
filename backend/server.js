@@ -4,9 +4,12 @@ const conf = require("./config/config");
 const app = express(conf);
 
 var jwt = require(`jsonwebtoken`);
+const bearerToken = require('express-bearer-token');
+
+
 var bcrypt = require('bcryptjs');
 
-const {User, Task} = require('./sequelize');
+const {User, Team} = require('./sequelize');
 
 app.use(function (req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", '*');
@@ -15,25 +18,108 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.use('/api/v1.0/register', bodyParser.json());
-app.use('/api/v1.0/update-password', bodyParser.json());
-app.use('/api/v1.0/task-add', bodyParser.json());
-app.use('/api/v1.0/task-delete', bodyParser.json());
+app.use(bearerToken());
+
+
+app.use(/^api\/v1.0\/(register|team|password|card).*/, bodyParser.json());
+
+app.use('/api/v1.0/team/:action', bodyParser.json());
+
+app.use('/api/v1.0/team(/:action)?', (req, resp, next) => {
+	var token = req.token || req.headers['x-access-token'];
+
+	if (!token) return resp.status(401).send({auth: false, token: null});
+
+	jwt.verify(token, conf.secret, function (err, decode) {
+		if (err) return resp.status(500).send({auth: false, message: 'Failed to authenticate token.' });
+		req.id = decode.id;
+		next();
+	});
+});
+
+app.get('/api/v1.0/team', (req, resp) => {
+	console.log(req.id);
+
+	User.findByPk(parseInt(req.id))
+		.then(user => {
+			user.getTeams().then(teams => resp.status(200).send(teams));
+		})
+		.catch(err => {
+			console.log(err);
+			resp.status(401).end();
+		});
+});
+
+app.post('/api/v1.0/team/add', (req, resp) => {
+	const {name} = req.body;
+
+	User.findByPk(parseInt(req.id))
+		.then(user => {
+			Team.findOne({where: {name}})
+				.then(item => {
+					if (item) return resp.status(400).send({message: "this team is eremovexist"});
+
+					Team.create({name})
+						.then(team => {
+							user.addTeam(team)
+								.then(user => resp.status(200).send({message: name}))
+								.catch(err => resp.status(500).end());
+						})
+						.catch(err => resp.status(500).end());
+				})
+				.catch(_ => resp.status(500).end());
+		})
+		.catch(err => {
+			console.log(err);
+			return resp.status(401).end();
+		});
+});
+
+app.delete('/api/v1.0/team/remove', (req, resp) => {
+	const {name} = req.body;
+
+	User.findByPk(parseInt(req.id))
+		.then(user => {
+			Team.findOne({where: {name}})
+				.then(team => {
+					if (!team) resp.status(400).send({message: "this team is not exist"});
+					team.destroy().then(_ =>  resp.status(200).send({message: name}));
+				})
+				.catch(_ => resp.status(500).end());
+		})
+		.catch(err => {
+			console.log(err);
+			return resp.status(401).end();
+		});
+});
+
+app.put('/api/v1.0/team/update', (req, resp) => {
+	const {name, newName} = req.body;
+	User.findByPk(parseInt(req.id))
+		.then(user => {
+			Team.findOne({where: {name}})
+				.then(team => {
+					if (!team) resp.status(400).send({message: "this team is not exist"});
+					team.update({name: newName}).then(_ =>  resp.status(200).send({message: newName}));
+				})
+				.catch(_ => resp.status(500).end());
+		})
+		.catch(err => {
+			console.log(err);
+			return resp.status(401).end();
+		});
+});
 
 app.get('/api/v1.0/login', (req, resp) => {
 	const {login, password} = req.query;
-	console.log(login);
 
 	User.findOne({where: {login}})
 		.then(user => {
-			console.log(user.password);
 			if (user) {
 				var passwordIsValid = bcrypt.compareSync( password, user.password);
-				console.log(passwordIsValid);
 
 				if (!passwordIsValid) return resp.status(401).send({ auth: false, token: null });
-
-				var token = jwt.sign({ id: user._id }, conf.secret, {
+				var token = jwt.sign({ id: user.id }, conf.secret, {
 					expiresIn: 86400
 				});
 				resp.status(200).send({ auth: true, token: token });
@@ -45,8 +131,6 @@ app.get('/api/v1.0/login', (req, resp) => {
 
 app.post('/api/v1.0/register', (req, resp) => {
 	const {login, password, confirmPassword} = req.body;
-
-	console.log(login, password, confirmPassword);
 
 	User.findOne({where: {login}}).then((user) => {
 		if (user) {
