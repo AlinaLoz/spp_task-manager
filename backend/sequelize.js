@@ -6,9 +6,9 @@ const BoardModel = require('./models/board');
 const TokenModel = require('./models/token');
 
 const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
-	host: conf.host,
+	host: "db",
 	dialect: conf.dialect,
- 	port: conf.port,
+ 	port: "3306",
 	pool: {
 		max: conf.pool.max
 	}
