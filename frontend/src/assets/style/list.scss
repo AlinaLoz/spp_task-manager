@@ -1,0 +1,32 @@
+.list {
+  &-teams {
+    width: 100% !important;
+
+    .item {
+      position: relative;
+      width: 400px !important;
+      border-bottom: 1px solid rgba(34, 36, 38, .15) !important;
+      padding-bottom: 10px !important;
+    }
+
+    .content {
+      .header {
+        font-size: 19px !important;
+        font-weight: 500;
+      }
+    }
+
+    .content-button {
+      position: absolute;
+      right: 0;
+      padding: 0;
+      top: 5px;
+    }
+
+    .button {
+      &-add {
+        margin-top: 20px;
+      }
+    }
+  }
+}

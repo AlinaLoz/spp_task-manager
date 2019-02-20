@@ -3,6 +3,7 @@ const conf = require('./config/db');
 const UserModel = require('./models/user');
 const TeamModel = require('./models/team');
 const BoardModel = require('./models/board');
+const TokenModel = require('./models/token');
 
 const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
 	host: conf.host,
@@ -16,6 +17,7 @@ const sequelize = new Sequelize(conf.database, conf.user, conf.password, {
 const User = UserModel(sequelize, Sequelize);
 const Team = TeamModel(sequelize, Sequelize);
 const Board = BoardModel(sequelize, Sequelize);
+const Token = TokenModel(sequelize, Sequelize);
 
 User.belongsToMany(Team, {through: 'userteam' });
 Team.belongsToMany(User, {through: 'userteam' });
@@ -25,6 +27,9 @@ Team.hasMany(Board);
 Board.belongsTo(User);
 Board.belongsTo(Team);
 
+User.hasOne(Token);
+Token.belongsTo(User);
+
 sequelize.sync()
 	.then(() => {
 		console.log(`Database & tables created!`)
@@ -33,6 +38,7 @@ sequelize.sync()
 module.exports = {
 	User,
 	Team,
-	Board
+	Board,
+    Token
 };
 

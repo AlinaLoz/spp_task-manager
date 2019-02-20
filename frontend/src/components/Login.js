@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Button, Input, Grid, Message, Icon} from "semantic-ui-react";
-import {fetchLogin} from "../redux/login/actions";
+import {fetchLogin} from "../redux/auth/actions";
 
 class Login extends Component {
 	state = {
@@ -25,7 +25,6 @@ class Login extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const {message} = nextProps;
-		console.log(message);
 		if (this.props.message !== message && !message.negative) {
 
 			this.props.history.push('/');
@@ -37,8 +36,8 @@ class Login extends Component {
 		const {message} = this.props;
 
 		return (
-			<Grid className={'page-form login'}>
-				<Button className="button__register" onClick={() => this.props.history.push('/register')}>register</Button>
+			<Grid className={'page-form auth'}>
+				<Button className={'button-register'} onClick={() => this.props.history.push('/register')}>register</Button>
 				<div>
 					<Message hidden={!Object.keys(message).length || !message.negative} content={message.text}/>
 					<form>
@@ -59,10 +58,10 @@ class Login extends Component {
 }
 
 export default connect(
-	state => ({
-		message: state.auth.message || {}
-	}),
-	dispatch => ({
-		onfetchLogin: (login, password) => dispatch(fetchLogin(login, password))
-	})
+		state => ({
+			message: state.auth.message || {}
+		}),
+		dispatch => ({
+			onfetchLogin: (login, password) => dispatch(fetchLogin(login, password))
+		})
 )(Login);

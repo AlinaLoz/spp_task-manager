@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Board} from "./Board";
+import {Navbar} from "./Sidebar";
 import {Accordion, Button, Header, Icon, Input, Label, Message, TextArea} from "semantic-ui-react";
 import {addTask, changeTask, deleteTask, getTasks, removeMessage} from "../redux/tasks/actions";
 
@@ -94,7 +94,7 @@ class Tasks extends Component {
 		const {addTask} = this.state;
 
 		return (
-			<Board>
+			<Navbar>
 				<section  className="content">
 					<Header className="content__header">Tasks</Header>
 					<Message hidden={!Object.keys(message).length} content={message.text || "changing save"}  onDismiss={() => onremoveMessage()}/>
@@ -102,7 +102,7 @@ class Tasks extends Component {
 					{tasks.map(task => <TaskItem key={task.id} task={task}/> )}
 				</section>
 				{addTask && <Task/>}
-			</Board>
+			</Navbar>
 		)
 	}
 }

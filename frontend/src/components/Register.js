@@ -26,8 +26,7 @@ class Register extends Component {
 	componentWillReceiveProps(nextProps) {
 		const {message} = nextProps;
 		if (this.props.message !== message && !message.negative) {
-
-			this.props.history.push('/login');
+			this.props.history.push('/auth');
 		}
 	}
 
@@ -35,9 +34,10 @@ class Register extends Component {
 		const {login, password} = this.state;
 		const {message} = this.props;
 
+		console.log(message);
 		return (
 			<Grid className={'page-form register'}>
-				<Button className="button__back" onClick={() => this.props.history.push('/')}>back</Button>
+				<Button className="button-back button__back" onClick={() => this.props.history.push('/')}>back</Button>
 				<div>
 					<Message hidden={!Object.keys(message).length || !message.negative} content={message.text}/>
 					<form>

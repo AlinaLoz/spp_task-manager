@@ -1,0 +1,31 @@
+.button {
+  &-show-team {
+    padding: 4px 15px !important;
+    height: 22px !important;
+  }
+
+  &-drop-team {
+    padding: 4px 0 4px 9px !important;
+    height: 22px !important;
+    background: #f39393 !important;
+  }
+
+  &-add {
+    width: 105px !important;
+    padding: 10px 5px !important;
+    margin-top: 20px !important;
+  }
+
+  &-save {
+    width: 150px !important;
+  }
+
+  &-register {
+    width: 150px !important;
+    float: right;
+  }
+
+  &-back {
+    width: 150px !important;
+  }
+}

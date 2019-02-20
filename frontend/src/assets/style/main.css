@@ -1,7 +1,197 @@
+.sidebar {
+  font-weight: 300;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+}
+.sidebar .item {
+  padding-top: 0;
+}
+.sidebar i.icon.log.out {
+  position: relative;
+  left: 28px;
+  top: 2px;
+}
+.sidebar .segment {
+  padding: 0;
+}
+.sidebar a svg {
+  width: 20px;
+  height: 20px;
+}
+.sidebar a span {
+  position: relative;
+  top: 2px;
+  font-weight: 300;
+  left: 10px;
+}
+.sidebar a span:hover {
+  color: #00b5ad;
+}
+.sidebar a:first-child {
+  margin-bottom: 20px;
+  position: relative;
+}
+.sidebar a:first-child > div {
+  position: absolute;
+}
+.sidebar a:first-child svg {
+  width: 46px;
+  height: 46px;
+}
+.sidebar a:first-child span {
+  position: relative;
+  font-weight: 500;
+  top: 24px;
+  font-size: 26px;
+}
+
+.grid {
+  margin: 30px 0 30px 250px !important;
+  padding-bottom: 30px !important;
+  width: 800px !important;
+  flex-direction: column !important;
+  height: 95vh;
+  flex-wrap: nowrap !important;
+}
+.grid.team-change .button-save {
+  margin-left: 1rem !important;
+  margin-top: 0 !important;
+}
+.grid .list {
+  padding-bottom: 30px !important;
+}
+.grid-change-team {
+  width: 600px !important;
+}
+.grid-change-team .form {
+  width: 400px !important;
+}
+.grid-change-team .input {
+  width: 400px;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+.grid-change-team .input .label {
+  width: 200px;
+  background: none;
+  padding: 0;
+  margin-right: 40px;
+}
+.grid-change-team .input input {
+  width: 160px !important;
+  padding: 5px !important;
+  height: 30px !important;
+}
+.grid-change-team .input .input-bew-user-test {
+  color: darkcyan;
+}
+.grid-change-team .input i.icon {
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  right: -32px;
+}
+.grid-change-team .input i.icon.warning:before {
+  color: red;
+}
+.grid-change-team .input i.icon.check:before {
+  color: green;
+}
+.grid-change-team .input i.icon:hover {
+  cursor: pointer;
+}
+.grid-change-team .button-save {
+  margin-top: 30px !important;
+  background: navajowhite !important;
+}
+.grid-change-team .members {
+  border: 0 !important;
+  box-shadow: none !important;
+  width: 400px;
+  padding: 0 !important;
+}
+.grid-change-team .members .item {
+  padding: 10px !important;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+}
+.grid-change-team .members .item .content {
+  position: relative;
+  left: 10px;
+  top: -2px;
+  padding: 0 !important;
+  display: inline-flex;
+  font-size: 14px !important;
+}
+.grid .message {
+  width: 400px !important;
+  margin-left: 10px;
+}
+
+.list-teams {
+  width: 100% !important;
+}
+.list-teams .item {
+  position: relative;
+  width: 400px !important;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15) !important;
+  padding-bottom: 10px !important;
+}
+.list-teams .content .header {
+  font-size: 19px !important;
+  font-weight: 500;
+}
+.list-teams .content-button {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  top: 5px;
+}
+.list-teams .button-add {
+  margin-top: 20px;
+}
+
+.button-show-team {
+  padding: 4px 15px !important;
+  height: 22px !important;
+}
+.button-drop-team {
+  padding: 4px 0 4px 9px !important;
+  height: 22px !important;
+  background: #f39393 !important;
+}
+.button-add {
+  width: 105px !important;
+  padding: 10px 5px !important;
+  margin-top: 20px !important;
+}
+.button-save {
+  width: 150px !important;
+}
+.button-register {
+  width: 150px !important;
+  float: right;
+}
+.button-back {
+  width: 150px !important;
+}
+
+.input {
+  width: 250px;
+  height: 30px;
+}
+
+#root {
+  display: flex;
+}
+
 html, body {
   min-width: 1000px;
   margin: 0;
-  font-family: Lato, 'sans-serif'; }
+  font-family: Lato, "sans-serif";
+}
 
 .page-form {
   height: 100vh;
@@ -9,100 +199,125 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  background: url("../images/login_bg.png"); }
-  .page-form > div {
-    width: 450px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-  .page-form form {
-    background: #f3f4f5;
-    color: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
-    margin: 1rem 0;
-    padding: 1em;
-    border-radius: .28571429rem;
-    border: 1px solid rgba(34, 36, 38, 0.15); }
-    .page-form form .input {
-      height: 35px !important;
-      width: 100%;
-      margin-bottom: 10px; }
-      .page-form form .input i {
-        position: absolute;
-        margin-left: 9px;
-        margin-top: 7px; }
-      .page-form form .input input {
-        text-indent: 20px; }
-  .page-form .message {
-    background: #f95939; }
-  .page-form .button__register {
-    position: absolute;
-    right: 5px;
-    top: 25px; }
-  .page-form .button__login {
-    background: #00b5ad;
-    width: 100%; }
-  .page-form .button__back {
-    position: absolute;
-    left: 25px;
-    top: 25px; }
+  background: url("../images/login_bg.png");
+}
+.page-form > div {
+  width: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}
+.page-form form {
+  background: #f3f4f5;
+  color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+  margin: 1rem 0;
+  padding: 1em;
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+}
+.page-form form .input {
+  height: 35px !important;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.page-form form .input i {
+  position: absolute;
+  margin-left: 9px;
+  margin-top: 7px;
+}
+.page-form form .input input {
+  text-indent: 20px;
+}
+.page-form .message {
+  background: #f95939;
+}
+.page-form .button__register {
+  position: absolute;
+  right: 5px;
+  top: 25px;
+}
+.page-form .button__login {
+  background: #00b5ad;
+  width: 100%;
+}
+.page-form .button__back {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+}
 
 .page-tasks {
-  display: flex; }
-  .page-tasks .segment {
-    padding-right: 0;
-    padding-left: 0;
-    padding-top: 0;
-    font-weight: 700; }
-    .page-tasks .segment .item i.icon.tasks:before {
-      position: relative;
-      left: -10px; }
-  .page-tasks__sidebar.sidebar {
-    padding-right: 0;
-    width: 210px !important;
-    height: 100vh  !important;
-    position: relative !important;
-    background: #1b1c1d; }
-    .page-tasks__sidebar.sidebar .item {
-      display: inline-block;
-      background: 0 0;
-      width: 100%;
-      font-weight: 700;
-      padding: 0.5em 1.33333333em;
-      font-size: 16px;
-      color: white;
-      text-decoration: none; }
-      .page-tasks__sidebar.sidebar .item a {
-        color: white;
-        text-decoration: none; }
-      .page-tasks__sidebar.sidebar .item:hover {
-        cursor: pointer; }
+  display: flex;
+}
+.page-tasks .segment {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 0;
+  font-weight: 700;
+}
+.page-tasks .segment .item i.icon.tasks:before {
+  position: relative;
+  left: -10px;
+}
+.page-tasks__sidebar.sidebar {
+  padding-right: 0;
+  width: 210px !important;
+  height: 100vh !important;
+  background: #1b1c1d;
+}
+.page-tasks__sidebar.sidebar .item {
+  display: inline-block;
+  background: 0 0;
+  width: 100%;
+  font-weight: 700;
+  padding: 0.5em 1.33333333em;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+.page-tasks__sidebar.sidebar .item a {
+  color: white;
+  text-decoration: none;
+}
+.page-tasks__sidebar.sidebar .item:hover {
+  cursor: pointer;
+}
 
 .content {
   padding: 14px 14px;
-  position: relative; }
-  .content textarea {
-    width: 92%; }
-  .content i.icon.save:before {
-    position: absolute;
-    right: 17px;
-    top: 6px; }
-  .content .header {
-    font-size: 1.71428571rem !important;
-    padding-top: 10px; }
-  .content .button-add {
-    margin-bottom: 10px; }
-  .content .accordion {
-    width: 400px !important; }
-    .content .accordion i:hover {
-      cursor: pointer; }
-    .content .accordion i.icon.close:before {
-      position: absolute;
-      right: 28px; }
-    .content .accordion i.icon.edit:before {
-      position: absolute;
-      right: 50px; }
+  position: relative;
+}
+.content textarea {
+  width: 92%;
+}
+.content i.icon.save:before {
+  position: absolute;
+  right: 17px;
+  top: 6px;
+}
+.content .header {
+  font-size: 1.71428571rem !important;
+  padding-top: 10px;
+}
+.content .button-add {
+  margin-bottom: 10px;
+}
+.content .accordion {
+  width: 400px !important;
+}
+.content .accordion i:hover {
+  cursor: pointer;
+}
+.content .accordion i.icon.close:before {
+  position: absolute;
+  right: 28px;
+}
+.content .accordion i.icon.edit:before {
+  position: absolute;
+  right: 50px;
+}
 
 .task-add {
   position: absolute;
@@ -110,19 +325,24 @@ html, body {
   top: 20px;
   background: #f2f2f2;
   padding: 10px 7px;
-  border-radius: 5px; }
-  .task-add textarea {
-    display: block;
-    margin-bottom: 10px;
-    width: 100%; }
-  .task-add label {
-    height: 20px; }
-  .task-add .input {
-    margin-bottom: 14px; }
-  .task-add input {
-    height: 25px;
-    padding: 0 !important;
-    position: relative;
-    top: 2px; }
+  border-radius: 5px;
+}
+.task-add textarea {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.task-add label {
+  height: 20px;
+}
+.task-add .input {
+  margin-bottom: 14px;
+}
+.task-add input {
+  height: 25px;
+  padding: 0 !important;
+  position: relative;
+  top: 2px;
+}
 
 /*# sourceMappingURL=main.css.map */

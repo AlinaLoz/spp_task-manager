@@ -1,3 +1,13 @@
+@import "sidebar";
+@import "grid";
+@import "list";
+@import "button";
+@import "input";
+
+#root {
+  display:flex;
+}
+
 html, body {
   min-width: 1000px;
   margin: 0;
@@ -17,7 +27,7 @@ html, body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-70%);
   }
 
   form {
@@ -92,7 +102,6 @@ html, body {
     padding-right: 0;
     width: 210px !important;
     height: 100vh  !important;
-    position: relative !important;
     background: #1b1c1d;
 
     .item {
@@ -194,3 +203,5 @@ html, body {
     top: 2px;
   }
 }
+
+

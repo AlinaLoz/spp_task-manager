@@ -1,0 +1,101 @@
+.grid {
+  margin: 30px 0 30px 250px !important;
+  padding-bottom: 30px !important;
+  width: 800px !important;
+  flex-direction: column !important;
+  height: 95vh;
+  flex-wrap: nowrap !important;
+
+  &.team-change {
+    .button-save {
+      margin-left: 1rem !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  .list {
+    padding-bottom: 30px !important;
+  }
+
+   &-change-team {
+      width: 600px !important;
+
+     .form {
+       width: 400px !important;
+     }
+
+     .input {
+       width: 400px;
+       display: block;
+       margin-bottom: 10px;
+       position: relative;
+
+       .label {
+         width: 200px;
+         background: none;
+         padding: 0;
+         margin-right: 40px;
+       }
+
+       input {
+         width: 160px !important;
+         padding: 5px !important;
+         height: 30px !important;
+       }
+
+       .input-bew-user-test {
+         color:darkcyan;
+       }
+
+       i.icon {
+         font-size: 16px;
+         position: absolute;
+         top: 5px;
+         right: -32px;
+
+          &.warning:before {
+            color: red;
+          }
+          &.check:before {
+            color: green;
+          }
+          &:hover {
+            cursor:pointer;
+          }
+       }
+     }
+
+     .button-save {
+       margin-top: 30px !important;
+       background: navajowhite !important;
+     }
+
+     .members {
+       border: 0 !important;
+       box-shadow: none !important;
+       width: 400px;
+       padding: 0 !important;
+
+
+       .item {
+         padding: 10px !important;
+         border-bottom: 1px solid rgba(34,36,38,.15);
+         border-top: 1px solid rgba(34,36,38,.15);
+
+         .content {
+           position: relative;
+           left: 10px;
+           top: -2px;
+           padding: 0 !important;
+           display: inline-flex;
+           font-size: 14px !important;
+         }
+       }
+     }
+   }
+
+  .message {
+    width: 400px !important;
+    margin-left: 10px;
+  }
+}

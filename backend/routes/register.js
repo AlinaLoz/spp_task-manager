@@ -1,6 +1,6 @@
 const {User} = require('../sequelize');
 
-module.exports = function(app) {
+module.exports = function(app, bcrypt) {
     app.post('/api/v1.0/register', (req, resp) => {
         const {login, password, confirmPassword} = req.body;
 
