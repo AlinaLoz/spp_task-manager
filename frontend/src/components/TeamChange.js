@@ -13,7 +13,6 @@ class TeamChange extends Component {
         ongetOneTeam(match.params.id);
     }
 
-
     render() {
         const {ondropMessage, onupdateName} = this.props;
         const {message, team} = this.props;
@@ -24,7 +23,8 @@ class TeamChange extends Component {
                     <Message.Header>{message.info}</Message.Header>
                 </Message>
                 <Header>{team && team.name}</Header>
-                <Input onChange={(e) => this.setState({name:e.target.value})}/>
+                <label>изменить название тимы</label>
+                <Input  onChange={(e) => this.setState({name:e.target.value})}/>
                 <Header>Участники:</Header>
                 <List>
                     {team && team.users.map((user, index) => <List.Item key={index}>{user.login}</List.Item>)}

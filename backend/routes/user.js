@@ -1,14 +1,14 @@
-module.exports = function(app, User) {
-    app.get('/api/v1.0/user/check', (req, resp) => {
-        const {login} = req.query;
+const {User} = require('../lib/sequelize');
 
-        User.findOne({where: {login}})
-            .then(user => {
-                if (user) {
-                    resp.status(200).send({id:user.id, login: user.login});
-                } else {
-                    resp.status(404).send({message: "user is not exist"});
-                }})
-            .catch(err => resp.status(404).end());
-    });
+exports.get = function(req, resp) {
+    const {login} = req.query;
+
+    User.findOne({where: {login}})
+        .then(user => {
+            if (user) {
+                resp.status(200).send({id:user.id, login: user.login});
+            } else {
+                resp.status(404).send({message: "user is not exist"});
+            }})
+        .catch(err => resp.status(404).end());
 };

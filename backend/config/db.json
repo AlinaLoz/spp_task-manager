@@ -3,7 +3,7 @@
 	"port": "3306",
 	"user": "lozita",
 	"password": "651003",
-	"database": "task_manager",
+	"database": "trello",
 	"dialect": "mysql",
 	"pool": {
 		"max": 5

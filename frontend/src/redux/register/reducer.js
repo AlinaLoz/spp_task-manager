@@ -12,7 +12,9 @@ export default function register(state = initState, action) {
 			return {...state, message : {negative: false, text: "" }};
 		case ACTIONS.USER.REGISTER.FL:
 			const {data} = action;
-			return {...state, message : {negative: true, text: data}};
+			console.log(data.message);
+
+			return {...state, message : {negative: true, text: data.message}};
 		default:
 			return state;
 	}

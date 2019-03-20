@@ -31,19 +31,18 @@ class Register extends Component {
 	}
 
 	render() {
-		const {login, password} = this.state;
+		const {login, password, confirmPassword} = this.state;
 		const {message} = this.props;
 
-		console.log(message);
 		return (
 			<Grid className={'page-form register'}>
 				<Button className="button-back button__back" onClick={() => this.props.history.push('/')}>back</Button>
 				<div>
 					<Message hidden={!Object.keys(message).length || !message.negative} content={message.text}/>
 					<form>
-						<Input className="login" type="text" onChange={this.onChange.bind(this, "login")}>
+						<Input className="login" type="email" onChange={this.onChange.bind(this, "login")}>
 							<Icon name="user"/>
-							<input type="text"/>
+							<input pattern={`^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$`} type="email"/>
 						</Input>
 						<Input className="password" type="password" onChange={this.onChange.bind(this, "password")}>
 							<Icon name="lock"/>
@@ -53,13 +52,14 @@ class Register extends Component {
 							<Icon name="lock"/>
 							<input type="password"/>
 						</Input>
-						<Button className="button__login" disabled={!login || !password} onClick={this.register}>register</Button>
+						<Button className="button__login" disabled={!login || !password || !confirmPassword} onClick={this.register}>register</Button>
 					</form>
 				</div>
 			</Grid>
 		)
 	}
 }
+
 
 export default connect(
 	state => ({

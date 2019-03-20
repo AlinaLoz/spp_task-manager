@@ -4,7 +4,6 @@ import {Xhr} from "../../helpers/Xhr";
 export const fetchRegister = (login, password, confirmPassword) => dispatch => {
 	dispatch({type: ACTIONS.USER.REGISTER.RQ});
 
-
 	Xhr.register(login, password,confirmPassword).then(resp => {
 		//if (!resp.data.auth) {throw new Error('not auth')}
 		dispatch({
@@ -14,7 +13,7 @@ export const fetchRegister = (login, password, confirmPassword) => dispatch => {
 	}).catch(err => {
 		dispatch({
 			type: ACTIONS.USER.REGISTER.FL,
-			data: err
+			data: err.data
 		})
 	});
 };

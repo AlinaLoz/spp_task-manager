@@ -41,7 +41,7 @@ class Xhr {
 				if (response.status >= 200 && response.status < 300) {
 					return response.json();
 				}
-				throw response.statusText
+				return response.json().then(err => {throw err;});
 			});
 	}
 
@@ -51,7 +51,8 @@ class Xhr {
 				if (response.status >= 200 && response.status < 300) {
 					return response.json();
 				}
-				throw response.statusText
+
+				return response.json().then(err => {throw err;});
 			});
 	}
 

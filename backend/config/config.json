@@ -1,6 +1,12 @@
 {
-	"port": "8000",
-	"host": "127.0.0.1",
-	"dialect": "mysql",
-	"secret": "password"
+	"sequelize": {
+		"dialect": "mysql",
+		"secret": "password"
+	},
+	"token": {
+		"secret": "any_secret_key",
+		"refreshSecret": "any_refresh_secret_key",
+		"tokenLife": "1d",
+		"refreshTokenLife": "14d"
+	}
 }

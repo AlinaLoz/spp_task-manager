@@ -10,11 +10,9 @@ export const fetchLogin = (login, password) => dispatch => {
 			data: resp
 		})
 	}).catch(err => {
-		console.log('errrr');
-
 		dispatch({
 			type: ACTIONS.USER.LOGIN.FL,
-			data: err
+			data: err.data
 		})
 	});
 };

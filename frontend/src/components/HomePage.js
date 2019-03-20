@@ -18,7 +18,7 @@ class HomePage extends React.Component {
 	componentWillMount() {
 		const {onfetchAuth} = this.props;
 		onfetchAuth();
-		this.intervalAuth = setInterval(() => onfetchAuth(), 5000);
+		//this.intervalAuth = setInterval(() => onfetchAuth(), 5000);
 	}
 
 	render() {

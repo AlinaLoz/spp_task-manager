@@ -28,7 +28,7 @@ export default function auth(state = initState, action) {
 			const {data} = action;
 			localStorage.removeItem('token');
 			localStorage.setItem('auth', "false");
-			return {...state, auth: false, message : {negative: true, text: data}};
+			return {...state, auth: false, message : {negative: true, text: data.message}};
 		default:
 			return state;
 	}
